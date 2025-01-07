@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 print(tf.__version__)
-
+print(tf.config.list_physical_devices('GPU'))
 
 fashion_mnist = tf.keras.datasets.fashion_mnist
 
