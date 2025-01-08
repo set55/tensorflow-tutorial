@@ -4,6 +4,8 @@ import tensorflow as tf
 # Helper libraries
 import numpy as np
 import matplotlib.pyplot as plt
+import time
+
 
 print(tf.__version__)
 
@@ -15,7 +17,10 @@ fashion_mnist = tf.keras.datasets.fashion_mnist
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
+print('train_images.ndim: ', train_images.ndim)
 print('train_images.shape: ', train_images.shape)
+print('train_images.dtype: ', train_images.dtype)
+
 print('len(train_labels): ', len(train_labels))
 print('train_labels: ', train_labels)
 print('test_images.shape: ', test_images.shape)
@@ -56,9 +61,16 @@ model = tf.keras.Sequential([
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
-
+# Record the start time
+start_time = time.time()
 # Train the model
 model.fit(train_images, train_labels, epochs=10)
+# Record the end time
+end_time = time.time()
+# Calculate the training duration
+training_duration = end_time - start_time
+print(f'Training time: {training_duration:.2f} seconds')
+
 
 # Evaluate accuracy
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
