@@ -74,7 +74,7 @@ print(f'Training time: {training_duration:.2f} seconds')
 
 # Evaluate accuracy
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
-print('\nTest accuracy:', test_acc)
+print('\nTest accuracy:', test_acc, ', Test loss: ', test_loss)
 
 # Make predictions
 probability_model = tf.keras.Sequential([model, 
